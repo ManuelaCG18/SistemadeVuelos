@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -60,9 +61,13 @@ namespace Vuelos
                 return;
             }
 
-            Vuelo vuelo = listaVuelos.FirstOrDefault(v => v.Codigo == txtCodigoReserva.Text);
+            Vuelo vuelo = listaVuelos.FirstOrDefault(v => v.Codigo == txtCodigoReserva.Text); /** v representa cada vuelo en la lista
+                                                                                                  v.Codigo == codigo compara el código del vuelo (v.Codigo) con el código ingresado (codigo).
+                                                                                                  Si encuentra un vuelo con ese código, lo guarda en vueloReservado.
+                                                                                               **/
+            
 
-            if(vuelo.ReservarAsientos(cantidad))
+            if (vuelo.ReservarAsientos(cantidad))
             {
                 MessageBox.Show($"Reserva exitosa! Asientos reservados: {cantidad}");
                 ActualizarListaVuelos();
