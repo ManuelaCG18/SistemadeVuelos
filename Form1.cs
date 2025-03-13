@@ -63,18 +63,24 @@ namespace Vuelos
 
             Vuelo vuelo = listaVuelos.FirstOrDefault(v => v.Codigo == txtCodigoReserva.Text); /** v representa cada vuelo en la lista
                                                                                                   v.Codigo == codigo compara el código del vuelo (v.Codigo) con el código ingresado (codigo).
-                                                                                                  Si encuentra un vuelo con ese código, lo guarda en vueloReservado.
+                                                                                                  Si encuentra un vuelo con ese código, lo guarda en listaVuelos.
                                                                                                **/
-            
-
-            if (vuelo.ReservarAsientos(cantidad))
+            if(vuelo != null)
             {
-                MessageBox.Show($"Reserva exitosa! Asientos reservados: {cantidad}");
-                ActualizarListaVuelos();
+                if(vuelo.ReservarAsientos(cantidad))
+                {
+                    MessageBox.Show($"Reserva exitosa! Asientos reservados: {cantidad}");
+                    ActualizarListaVuelos();
+                    LimpiarCamposVuelos();
+                }
+                else
+                {
+                    MessageBox.Show("No hay suficientes asientos disponibles :(");
+                }
             }
             else
             {
-                MessageBox.Show("No hay suficientes asientos disponibles :(");
+                MessageBox.Show("Vuelo no encontrado :( intente con otro codigo de vuelo.");
             }
         }
 
